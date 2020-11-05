@@ -23,7 +23,7 @@ function list_repos {
         for d in ${dirs[@]}; do
             cd $d 2> /dev/null
             if [[ $? -eq 0 ]]
-                then ls -a | grep .git &> /dev/null
+                then ls -a | grep '\.git' &> /dev/null
                 if [[ $? -eq 0 ]]
                     # then output=$output:$d; count=$((count + 1)) # This works
                     then output+=( $d ); count=$((count + 1)) # This is for testing stuff
@@ -40,7 +40,7 @@ function list_repos {
 # Other users will NOT be able to delete them
 # Its color in ls output will change according to the LS_COLORS environment variable
 # Based on the color-code values for 'st'
-# To undo, run chmod o-t <directory-name> or following directions below to use 'undo_sticky' function
+# To undo, run chmod o-t <directory-name> or follow directions below to use 'undo_sticky' function
 function set_sticky {
     local git_repos=$1
     for r in ${git_repos[@]}; do
